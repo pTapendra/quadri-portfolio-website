@@ -1,8 +1,17 @@
+
 import Image from "next/image";
 import Link from "next/link";
 
-export type PublicationLink = { label: string; href: string };
-export type Author = { name: string; highlight?: boolean };
+export type PublicationLink = {
+  label: string;
+  href: string;
+};
+
+export type Author = {
+  name: string;
+  highlight?: boolean;
+};
+
 export type PublicationDetail = {
   abstract?: string;
   pdf?: string;
@@ -16,89 +25,111 @@ export type Publication = {
   title: string;
   authors: Author[];
   venue: string;
-  image?: { src: string; alt: string; width?: number; height?: number };
+  image?: {
+    src: string;
+    alt: string;
+    width?: number;
+    height?: number;
+  };
   links?: PublicationLink[];
-  highlight?: string; // award / badge
+  highlight?: string;
   detail?: PublicationDetail;
   tags?: string[];
 };
 
-export default function PublicationCard({ pub }: { pub: Publication }) {
+export default function PublicationCard({
+  pub,
+}: {
+  pub: Publication;
+}) {
   const { image, links } = pub;
 
   const extraPdf =
-    pub.detail?.pdf && !links?.some((l) => l.label.toLowerCase() === "pdf")
+    pub.detail?.pdf &&
+      !links?.some((l) => l.label.toLowerCase() === "pdf")
       ? [{ label: "PDF", href: pub.detail.pdf }]
       : [];
+
   const allLinks = [...(links || []), ...extraPdf];
 
   return (
-    <article className="group mx-auto max-w-8xl px-4 sm:px-6 rounded-xl bg-transparent transition-transform duration-200 hover:-translate-y-[1px]">
-      <div className="flex flex-col md:flex-row gap-5 md:gap-6">
-        <div className="md:w-[20%] w-full">
+    <article className="grid grid-cols-[76px_minmax(0,1fr)] gap-4 py-3.5 first:pt-1 sm:grid-cols-[86px_minmax(0,1fr)]">
+
+      {/* Thumbnail */}
+      <div className="mt-0.5 self-start">
+        <div className="relative h-[54px] w-[76px] overflow-hidden bg-white sm:h-[60px] sm:w-[86px]">
           {image ? (
-            <div className="relative w-full h-36 sm:h-40 md:h-44 lg:h-48 flex items-center justify-center bg-white">
-              <Image
-                src={image.src}
-                alt={image.alt}
-                fill
-                className="object-contain"
-                sizes="(max-width: 768px) 100vw, 28vw"
-                priority={false}
-              />
-            </div>
+            <Image
+              src={image.src}
+              alt={image.alt}
+              fill
+              sizes="(min-width: 640px) 86px, 76px"
+              className="object-contain"
+            />
           ) : (
-            <div className="w-full h-36 sm:h-40 md:h-44 lg:h-48 bg-neutral-100 flex items-center justify-center text-neutral-400">
+            <div className="flex h-full w-full items-center justify-center bg-neutral-100 text-[10px] text-neutral-400">
               No image
             </div>
           )}
         </div>
+      </div>
 
-        <div className="md:w-[90%] w-full flex flex-col mt-5">
-          {pub.highlight && (
-            <span className="inline-flex w-fit items-center rounded-full bg-amber-100 text-amber-900 px-2.5 py-0.5 text-xs font-semibold">
-              {pub.highlight}
-            </span>
-          )}
+      {/* Publication details */}
+      <div className="min-w-0">
 
-          {/* Title */}
-          <h3 className="text-neutral-900 font-semibold">{pub.title}</h3>
+        {/* Title */}
+        <h3 className="text-[14px] font-bold leading-[1.25] text-neutral-900 md:text-[15px]">
+          {pub.title}
+        </h3>
 
-          {/* Authors */}
-          <p className="text-neutral-800 text-sm">
-            {pub.authors.map((a, i) => (
-              <span
-                key={`${pub.slug}-a-${i}`}
-                className={a.highlight ? "font-semibold text-[#841617]" : ""}
-              >
-                {a.name}
-                {i < pub.authors.length - 1 ? ", " : ""}
-              </span>
-            ))}
+        {/* Highlight */}
+        {pub.highlight && (
+          <p className="mt-0.5 text-[12px] font-semibold leading-4 text-[#841617]">
+            {pub.highlight}
           </p>
+        )}
 
-          {/* Venue */}
-          {pub.venue && (
-            <p className="text-neutral-600 text-sm italic">{pub.venue}</p>
-          )}
+        {/* Authors */}
+        <p className="mt-0.5 text-[13px] leading-[1.35] text-neutral-700">
+          {pub.authors.map((a, i) => (
+            <span
+              key={`${pub.slug}-a-${i}`}
+              className={
+                a.highlight
+                  ? "font-semibold text-[#841617]"
+                  : ""
+              }
+            >
+              {a.name}
+              {i < pub.authors.length - 1 ? ", " : ""}
+            </span>
+          ))}
+        </p>
 
-          {/* Links */}
-          {allLinks.length > 0 && (
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-1">
-              {allLinks.map((l, i) => (
-                <Link
-                  key={`${pub.slug}-link-${i}`}
-                  href={l.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#9D2235] hover:text-[#7f1c2b] font-medium underline underline-offset-4"
-                >
-                  {l.label}
-                </Link>
-              ))}
-            </div>
-          )}
-        </div>
+        {/* Venue */}
+        {pub.venue && (
+          <p className="mt-0.5 text-[13px] italic leading-[1.35] text-neutral-600">
+            {pub.venue}
+          </p>
+        )}
+
+        {/* Resource links */}
+        {allLinks.length > 0 && (
+          <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] leading-[1.35]">
+            {allLinks.map((l, i) => (
+              <Link
+                key={`${pub.slug}-link-${i}`}
+                href={l.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-[#9D2235] underline underline-offset-4 hover:text-[#7f1c2b]"
+              >
+                {l.label}
+              </Link>
+            ))}
+          </div>
+        )}
+
       </div>
     </article>
   );

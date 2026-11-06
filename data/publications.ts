@@ -21,6 +21,7 @@ export type Publication = {
   title: string;
   authors: Author[];
   venue: string;
+  proceedings?: string;
   image: { src: string; alt: string };
   links: PublicationLink[];
   highlight?: string;
@@ -30,6 +31,123 @@ export type Publication = {
 
 export const publications: Publication[] = [
   // 2026
+  {
+    slug: "vlat-hlc-eduvis-2026",
+    year: 2026,
+    title:
+      "Do Visualization Literacy Assessment Tests Account for High-Level Visualization Comprehension?",
+    authors: [
+      { name: "Aaryani Chowdary Ambati" },
+      { name: "Tapendra Pandey" },
+      { name: "Arran Zeyu Wang" },
+      { name: "Ghulam Jilani Quadri", highlight: true },
+    ],
+    venue:
+      "In Proceedings of the IEEE Workshop on Education in Visualization (EduVis 2026).",
+    image: {
+      src: "/publications/eduvis-2026.png",
+      alt: "EduVis 2026 placeholder thumbnail; official thumbnail not provided",
+    },
+    links: [],
+    detail: {
+      abstract: `Visualization literacy assessment tests such as VLAT and Mini-VLAT measure people’s ability to perform isolated, low-level visual analytics tasks, such as estimating statistical quantities. However, it remains unclear whether these assessments also account for the overall understanding viewers intuitively gain about the data without explicit cuing or guidance, often referred to as high-level comprehension. In this work, we examine whether Mini-VLAT scores predict high-level comprehension, characterized as alignment between viewers’ uncued interpretations and designer intent. We conducted a study with 80 participants, in which each participant completed the Mini-VLAT test and interpreted 16 charts selected from a set of 40 real-world visualizations. Our qualitative and quantitative analyses show no significant relationship between participants’ Mini-VLAT scores and high-level comprehension. Our findings suggest while visualization literacy tests like Mini-VLAT capture viewers’ ability to perform directed, low-level tasks, they do not assess high-level comprehension in natural, uncued settings. Future work should develop VLAT that accounts for high-level comprehension beyond estimating prespecified statistical quantities.`,
+    },
+    tags: ["Recent", "HLC", "Empirical"],
+  },
+  {
+    slug: "title-framing-line-charts",
+    year: 2026,
+    title:
+      "How Does Title Framing Influence Pattern Identification in Line Charts?",
+    authors: [
+      { name: "Jasmine Lim" },
+      { name: "Tapendra Pandey", highlight: true },
+      { name: "Arran Zeyu Wang" },
+      { name: "Sungahn Ko" },
+      { name: "Ghulam Jilani Quadri", highlight: true },
+    ],
+    venue: "In Proceedings of the VisxVision Workshop at IEEE VIS 2026",
+    links: [
+      {
+        label: "arXiv",
+        href: "https://arxiv.org/abs/2609.17455",
+      },
+      {
+        label: "PDF",
+        href: "https://arxiv.org/pdf/2609.17455",
+      },
+    ],
+    image: {
+      src: "/publications/How does title.png",
+      alt: "How Does Title Framing Influence Pattern Identification in Line Charts?",
+    },
+    detail: {
+      hero: {
+        src: "/publications/How does title.png",
+        alt: "Title framing in line charts",
+      },
+      pdf: "https://arxiv.org/pdf/2609.17455",
+      abstract: `Visual data communication in digital media is increasingly characterized by short attention spans and snapshot-based viewing, often employing line charts to convey trends and patterns. Among all visual elements, titles are crucial elements that can shape how viewers interpret visual information and form chart takeaways. In this study, we examine how title characteristics, particularly title word count and intended message, influence people's pattern identification in single-class line charts. Participants viewed 50 line charts collected from online news media and identified the pattern they perceived. Our results demonstrate that both title word count and intended message significantly influence viewers' pattern identification. Our findings highlight the importance of title framing in shaping quick-view pattern takeaways and supporting effective visualization communication.`,
+      bibtex: `@misc{lim2026titleframing,
+  title={How Does Title Framing Influence Pattern Identification in Line Charts?},
+  author={Jasmine Lim and Tapendra Pandey and Arran Zeyu Wang and Sungahn Ko and Ghulam Jilani Quadri},
+  year={2026},
+  eprint={2609.17455},
+  archivePrefix={arXiv},
+  url={https://arxiv.org/abs/2609.17455}
+}`,
+    },
+    tags: ["Recent", "HLC", "Perception"],
+  },
+  {
+    slug: "guidelines-are-not-rules",
+    year: 2026,
+    title:
+      "Guidelines Are Not Rules: Characterizing Terminologies around Visualization Design Guidelines",
+    authors: [
+      { name: "Anna L Chinni" },
+      { name: "Md Dilshadur Rahman" },
+      { name: "Bon Adriel Aseniero" },
+      { name: "Petra Isenberg" },
+      { name: "Kushin Mukherjee" },
+      { name: "Ghulam Jilani Quadri", highlight: true },
+      { name: "Paul Rosen" },
+      { name: "Karen B Schloss" },
+      { name: "Daniel Weiskopf" },
+    ],
+    venue: "In Proceedings of the BELIV Workshop at IEEE VIS 2026.",
+    links: [
+      {
+        label: "arXiv",
+        href: "https://arxiv.org/abs/2608.27842",
+      },
+      {
+        label: "PDF",
+        href: "https://arxiv.org/pdf/2608.27842",
+      },
+    ],
+    image: {
+      src: "/publications/Guidelines.png",
+      alt: "Guidelines Are Not Rules",
+    },
+    detail: {
+      hero: {
+        src: "/publications/Guidelines.png",
+        alt: "Guidelines Are Not Rules",
+      },
+      pdf: "https://arxiv.org/pdf/2608.27842",
+      abstract: `A common expectation in visualization research is that outcomes recommend how researchers and practitioners take action or make design decisions. We often express these as "guidelines." Yet, the term "guideline" is both ambiguous and loosely defined, and what one researcher considers a guideline may be too broad, too loose, or too strict for another. We take a closer look at a broader set of terms that can express desirable results around visualization research, and untangle how these words are understood in the community in relation to other similar terms. We base our work on an exploratory study with experts, followed by a crowdsourcing study with a separate mapping phase (n=30) and rating phase (n=42) targeting input from the broader visualization community, and an analysis of the use of terminology in 3,877 IEEE VIS papers published from 1990 to 2024. Based on our findings, we call for more nuanced, precise discussions of research outcomes and their communication to the broader community, including practitioners and students.`,
+      bibtex: `@misc{chinni2026guidelines,
+  title={Guidelines Are Not Rules: Characterizing Terminologies around Visualization Design Guidelines},
+  author={Anna L Chinni and Md Dilshadur Rahman and Bon Adriel Aseniero and Petra Isenberg and Kushin Mukherjee and Ghulam Jilani Quadri and Paul Rosen and Karen B Schloss and Daniel Weiskopf},
+  year={2026},
+  eprint={2608.27842},
+  archivePrefix={arXiv},
+  url={https://arxiv.org/abs/2608.27842}
+}`,
+    },
+    tags: ["Recent", "HLC", "Design Optimization"],
+  },
   {
     slug: "hlc-llm",
     year: 2026,
@@ -60,7 +178,7 @@ export const publications: Publication[] = [
       },
       pdf: "https://arxiv.org/abs/2604.08959",
     },
-    tags: ["Recent", "Comprehension", "Empirical"],
+    tags: ["Recent", "HLC", "Comprehension", "Empirical"],
   },
   {
     slug: "human-mllm",
@@ -120,7 +238,7 @@ export const publications: Publication[] = [
       },
       pdf: "https://arxiv.org/abs/2604.07691",
     },
-    tags: ["Recent", "Annotation", "Encoding"],
+    tags: ["Recent", "Annotation", "Encoding", "Perception"],
   },
   {
     slug: "redundant-is-not-redundant",
@@ -211,7 +329,7 @@ export const publications: Publication[] = [
     },
     tags: ["Perception", "Empirical"],
   },
-  { 
+  {
     slug: "distortion-aware",
     year: 2025,
     title:
@@ -257,7 +375,7 @@ export const publications: Publication[] = [
       "In Proceedings of the Workshop on Visualization for Communication (VisComm) at IEEE VIS, 2025.",
     links: [{ label: "PDF", href: "https://arxiv.org/pdf/2507.20805" }],
     image: { src: "/publications/ub.png", alt: "Bias Image" },
-    tags: ["Empirical", "Encoding"],
+    tags: ["Empirical", "Encoding", "Perception"],
   },
   {
     slug: "subitizing-visualization",
@@ -279,7 +397,7 @@ export const publications: Publication[] = [
       { label: "PDF", href: "https://arxiv.org/abs/2508.17460" },
     ],
     highlight: "Best Paper Honorable Mention (IEEE VIS 2025) 🏆",
-    tags: ["Best", "Recent", "Empirical", "Encoding"],
+    tags: ["Best", "Recent", "Empirical", "Encoding", "Perception"],
   },
   {
     slug: "annotation-survey-2025",
@@ -299,7 +417,7 @@ export const publications: Publication[] = [
       { label: "DOI", href: "https://arxiv.org/abs/2410.05579" },
       { label: "PDF", href: "https://arxiv.org/pdf/2410.05579" },
     ],
-    tags: ["Recent", "Survey", "Perception"],
+    tags: ["Recent", "Design Optimization", "Perception"],
   },
   // 2024
   {
@@ -477,7 +595,7 @@ export const publications: Publication[] = [
       { label: "PDF", href: "https://arxiv.org/pdf/2402.15605" },
       { label: "Data", href: "https://osf.io/869ev/" },
     ],
-    tags: ["Recent", "Perception", "Comprehension"],
+    tags: ["Recent", "HLC", "Perception", "Comprehension"],
   },
   {
     slug: "categorical-color-perception",
@@ -539,7 +657,7 @@ export const publications: Publication[] = [
       },
     ],
     highlight: "Best Paper Honorable Mention (IEEE VIS 2023) 🏆",
-    tags: ["Best", "Variability"],
+    tags: ["Best", "Perception"],
   },
   {
     slug: "exploring-annotation",
@@ -670,7 +788,7 @@ export const publications: Publication[] = [
       },
     ],
 
-    tags: ["Survey", "Encoding", "Perception"],
+    tags: ["Design Optimization", "Encoding", "Perception"],
   },
   {
     slug: "constructing-frameworks",
@@ -778,7 +896,7 @@ export const publications: Publication[] = [
       },
     ],
 
-    tags: ["Empirical", "Survey"],
+    tags: ["Empirical", "Design Optimization"],
   },
   {
     slug: "variations-observed",

@@ -1,28 +1,25 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import React, { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { newsItems } from "@/data/news";
+import NewsList from "@/components/NewsList";
 import { selectedPublications } from "@/data/publications";
 import { FaXTwitter, FaLinkedin } from "react-icons/fa6";
 import { SiGooglescholar } from "react-icons/si";
 import HighlightGJQ from "@/components/HighlightGJQ";
 
 const PREFERRED_TAG_ORDER = [
+  "All",
   "Best",
   "Recent",
   "Perception",
+  "HLC",
   "Design Optimization",
-  "Variability",
-  "Encoding",
   "Empirical",
-  "Survey",
 ];
 
 export default function Page() {
-  const latestNews = newsItems.slice(0, 4); // show only first 4 news items
-
   const dedupSelected = useMemo(() => {
     const map = new Map<string, any>();
     const dups: string[] = [];
@@ -42,29 +39,14 @@ export default function Page() {
     return Array.from(map.values());
   }, []);
 
-  const visibleTags = useMemo(() => {
-    const present = new Set<string>();
-    dedupSelected.forEach((p: any) =>
-      p.tags?.forEach((t: string) => present.add(t))
-    );
-    return PREFERRED_TAG_ORDER.filter((t) => present.has(t));
-  }, [dedupSelected]);
+  const visibleTags = PREFERRED_TAG_ORDER;
 
-  const [activeTag, setActiveTag] = useState<string>("Recent"); // default = Best
-
-  useEffect(() => {
-    if (!visibleTags.includes(activeTag)) {
-      if (visibleTags.includes("Best")) setActiveTag("Best");
-      else if (visibleTags.length) setActiveTag(visibleTags[0]);
-    }
-  }, [visibleTags, activeTag]);
+  const [activeTag, setActiveTag] = useState<string>("Recent");
 
   const filteredSelected = useMemo(() => {
+    if (activeTag === "All") return dedupSelected;
     return dedupSelected.filter((p: any) => p.tags?.includes(activeTag));
   }, [activeTag, dedupSelected]);
-
-  const toLinks = (link?: any) =>
-    link ? (Array.isArray(link) ? link : [link]) : [];
 
   return (
     <div className="min-h-screen bg-white">
@@ -84,13 +66,15 @@ export default function Page() {
                 />
               </div>
 
-              <div className="mt-4 font-sans flex flex-col items-center md:items-start text-center md:text-left gap-3">
-                <div className="space-y-1">
-                  <h2 className="text-xl sm:text-2xl font-semibold text-gray-900">
+
+              {/* Personal information: two compact groups */}
+              <div className="mt-3 flex flex-col items-center gap-2 font-sans text-center md:items-start md:text-left">
+                {/* Group 1: Personal and school information */}
+                <section aria-label="Personal and school information" className="space-y-0.5">
+                  <h2 className="text-xl sm:text-2xl font-semibold leading-tight text-gray-900">
                     Ghulam Jilani Quadri
                   </h2>
-
-                  <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
+                  <p className="text-gray-700 text-xs sm:text-sm leading-tight">
                     Assistant Professor
                     <br />
                     <a
@@ -99,128 +83,118 @@ export default function Page() {
                       rel="noopener noreferrer"
                       className="hover:underline hover:text-blue-500"
                     >
-                      School of Computer Science
+                      School of Computer Science (DH242)
                     </a>
                     <br />
                     Gallogly College of Engineering
                     <br />
                     University of Oklahoma
                   </p>
-                </div>
+                </section>
 
-                <div className="space-y-1 text-sm sm:text-base">
-                  <p className="font-semibold text-gray-900">Research Lab</p>
-                  <a
-                    href="https://www.div-lab.org/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#841617] hover:underline"
-                  >
-                    DIV-Lab
-                  </a>
-                </div>
+                {/* Group 2: Lab, email, and professional links */}
+                <section
+                  aria-label="Lab and contact links"
+                  className="flex flex-col items-center gap-0 md:items-start"
+                >
+                  <p className="text-xs sm:text-sm leading-tight text-gray-900">
+                    <span className="font-semibold">Research Lab</span>{" ("}
+                    <a
+                      href="https://www.div-lab.org/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#841617] hover:underline"
+                    >
+                      div-lab.org
+                    </a>
+                    {")"}
+                  </p>
 
-                <p className="text-gray-700 text-sm sm:text-base">
-                  Email: quadri@ou.edu
+                  <p className="text-gray-700 text-xs sm:text-sm leading-tight">
+                    Email:{" "}
+                    <a
+                      href="mailto:quadri@ou.edu"
+                      className="hover:text-blue-600 hover:underline"
+                    >
+                      quadri@ou.edu
+                    </a>
+                  </p>
 
-                </p>
-              </div>
+                  <div className="mt-0 flex flex-wrap items-center gap-3">
+                    <a
+                      href="https://x.com/jiquad"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="X (Twitter)"
+                      className="text-black"
+                      title="X (Twitter)"
+                    >
+                      <FaXTwitter size={28} />
+                    </a>
+                    <a
+                      href="https://scholar.google.com/citations?hl=en&tzom=300&user=jw9QYJcAAAAJ"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Google Scholar"
+                      className="text-blue-600"
+                      title="Google Scholar"
+                    >
+                      <SiGooglescholar size={28} />
+                    </a>
+                    <a
+                      href="https://www.linkedin.com/in/ghulamjilani1/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="LinkedIn"
+                      className="text-blue-800"
+                      title="LinkedIn"
+                    >
+                      <FaLinkedin size={28} />
+                    </a>
+                    <a
+                      href="https://www.div-lab.org/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="DIV Lab Website"
+                      title="DIV Lab Website"
+                      className="inline-flex items-center"
+                    >
+                      <Image
+                        src="/divlabsmallicon.png"
+                        alt="DIV Lab"
+                        width={42}
+                        height={42}
+                        className="h-7 w-auto"
+                      />
+                    </a>
 
-              {/* Social Media Links */}
-              <div className="flex flex-wrap items-center gap-4">
-                <a
-                  href="https://x.com/jiquad"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="X (Twitter)"
-                  className="text-black"
-                  title="X (Twitter)"
-                >
-                  <FaXTwitter size={28} />
-                </a>
-                <a
-                  href="https://scholar.google.com/citations?hl=en&tzom=300&user=jw9QYJcAAAAJ"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Google Scholar"
-                  className="text-blue-600"
-                  title="Google Scholar"
-                >
-                  <SiGooglescholar size={28} />
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/ghulamjilani1/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                  className="text-blue-800"
-                  title="LinkedIn"
-                >
-                  <FaLinkedin size={28} />
-                </a>
-                {/*
-                <a
-                  href="/cv.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="CV"
-                  className="text-gray-800 font-semibold text-sm pt-1"
-                  title="CV"
-                >
-                  CV
-                </a>
-                */}
+                    {/*
+                    <a
+                      href="/cv.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="CV"
+                      className="text-gray-800 font-semibold text-sm pt-1"
+                      title="CV"
+                    >
+                      CV
+                    </a>
+                    */}
+                  </div>
+                </section>
               </div>
             </div>
 
-            {/* NEWS*/}
-            <div className="mt-10 font-sans">
-              <h2 className="text-2xl font-sans font-semibold text-gray-900 mb-4">
+            {/* NEWS */}
+            <div className="mt-3 font-sans">
+              <h2 className="text-xl font-sans font-semibold text-gray-900 mb-2">
                 📰 News & Updates
               </h2>
-              <ul className="space-y-4">
-                {latestNews.map((item: any, index: number) => {
-                  const links = toLinks(item.link);
-                  return (
-                    <li
-                      key={index}
-                      className="p-4 shadow-sm hover:shadow-md transition-shadow rounded-xl bg-white"
-                    >
-                      <div className="font-semibold text-gray-900 text-sm sm:text-base">
-                        {item.monthYear}
-                      </div>
 
-                      <p className="text-gray-700 text-sm sm:text-base leading-relaxed mt-1">
-                        {item.description}
-                        {links.length > 0 && (
-                          <span className="ml-1">
-                            {links.map((l: any, i: number) => (
-                              <React.Fragment key={i}>
-                                <a
-                                  href={l.href}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="underline text-blue-600 hover:text-blue-800"
-                                >
-                                  {l.label}
-                                </a>
-                                {i < links.length - 1 && (
-                                  <span aria-hidden="true"> · </span>
-                                )}
-                              </React.Fragment>
-                            ))}
-                          </span>
-                        )}
-                      </p>
-                    </li>
-                  );
-                })}
-              </ul>
-              <div className="mt-4 flex justify-center">
-                <Link href="/oldnews" className="underline text-blue-600">
-                  Older News
-                </Link>
+              <div className="max-h-64 overflow-y-auto pr-2">
+                <NewsList />
               </div>
+
             </div>
           </aside>
 
@@ -305,6 +279,15 @@ export default function Page() {
                   <div className="h-1 w-full bg-gradient-to-r from-[#841617] via-[#9D2235] to-[#841617]" />
 
                   <ul className="p-4 sm:p-5 list-disc list-inside space-y-2 text-gray-800">
+
+                    <li>
+                      <span className="font-medium font-sans text-gray-900">
+                        CS 5093:
+                      </span>{" "}
+                      Visual Analytics{" "}
+                      <strong>(Spring 2027)</strong>
+                    </li>
+
                     <li>
                       <span className="font-medium font-sans text-gray-900">
                         CS 4063/5063:
@@ -359,7 +342,7 @@ export default function Page() {
                 {filteredSelected.map((p: any, i: number) => {
                   const extraPdf =
                     p.detail?.pdf &&
-                    !p.links?.some((l: any) => l.label.toLowerCase() === "pdf")
+                      !p.links?.some((l: any) => l.label.toLowerCase() === "pdf")
                       ? [{ label: "PDF", href: p.detail.pdf }]
                       : [];
                   const allLinks = [...(p.links || []), ...extraPdf];
