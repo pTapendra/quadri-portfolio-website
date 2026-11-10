@@ -2,19 +2,18 @@
 "use client";
 import { useMemo, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import NewsList from "@/components/NewsList";
 import { selectedPublications } from "@/data/publications";
 import { FaXTwitter, FaLinkedin } from "react-icons/fa6";
 import { SiGooglescholar } from "react-icons/si";
-import HighlightGJQ from "@/components/HighlightGJQ";
+import PublicationCard from "@/components/PublicationCard";
 
 const PREFERRED_TAG_ORDER = [
   "All",
   "Best",
   "Recent",
   "Perception",
-  "HLC",
+  "Comprehension",
   "Design Optimization",
   "Empirical",
 ];
@@ -338,67 +337,11 @@ export default function Page() {
                 </div>
               )}
 
-              <ul className="space-y-5">
-                {filteredSelected.map((p: any, i: number) => {
-                  const extraPdf =
-                    p.detail?.pdf &&
-                      !p.links?.some((l: any) => l.label.toLowerCase() === "pdf")
-                      ? [{ label: "PDF", href: p.detail.pdf }]
-                      : [];
-                  const allLinks = [...(p.links || []), ...extraPdf];
-
-                  return (
-                    <li
-                      key={`${p.slug}-${p.year ?? i}`}
-                      className="bg-white p-4 shadow-sm hover:shadow-md transition-shadow"
-                    >
-                      <h3 className="text-neutral-900 leading-snug font-semibold">
-                        <HighlightGJQ text={p.title} />
-                      </h3>
-
-                      {/* Authors */}
-                      <p className="text-neutral-700 text-sm mt-1">
-                        {p.authors?.map((a: any, ai: number) => (
-                          <span
-                            key={`${p.slug}-a-${ai}`}
-                            className={
-                              a.highlight ? "font-semibold text-[#841617]" : ""
-                            }
-                          >
-                            {a.name}
-                            {ai < p.authors.length - 1 ? ", " : ""}
-                          </span>
-                        ))}
-                      </p>
-
-                      {/* Highlight badge */}
-                      {p.highlight ? (
-                        <div className="flex flex-wrap gap-2 mt-2">
-                          <span className="inline-flex items-center font-semibold bg-[#f0f0f0] text-amber-800 text-xs px-2 py-1 border border-[#f0f0f0]">
-                            {p.highlight}
-                          </span>
-                        </div>
-                      ) : null}
-
-                      {/* Links row */}
-                      {allLinks.length ? (
-                        <div className="flex flex-wrap items-center gap-3 mt-3">
-                          {allLinks.map((l: any, li: number) => (
-                            <Link
-                              key={`${p.slug}-l-${li}`}
-                              href={l.href}
-                              target="_blank"
-                              className="text-blue-600 hover:underline underline-offset-2 text-sm font-medium"
-                            >
-                              {l.label}
-                            </Link>
-                          ))}
-                        </div>
-                      ) : null}
-                    </li>
-                  );
-                })}
-              </ul>
+              <div className="divide-y divide-neutral-100">
+                {filteredSelected.map((pub: any) => (
+                  <PublicationCard key={`${pub.slug}-${pub.year}`} pub={pub} />
+                ))}
+              </div>
             </div>
           </section>
         </div>

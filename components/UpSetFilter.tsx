@@ -136,6 +136,22 @@ export default function UpSetFilter({
     );
   }, [publications]);
 
+  /*
+   * Filled dots per category column, counted once
+   * for each distinct intersection row (not per paper).
+   */
+  const columnCircleCounts = useMemo(
+    () =>
+      publicationTopicOrder.map((topic) =>
+        rows.reduce(
+          (total, row) =>
+            total + (row.topics.includes(topic) ? 1 : 0),
+          0
+        )
+      ),
+    [rows]
+  );
+
   const maxTopicCount = useMemo(
     () =>
       Math.max(
@@ -495,7 +511,7 @@ export default function UpSetFilter({
                     )}
                   </div>
 
-                  {/* Count */}
+                  {/* Filled circles in this row */}
                   <span
                     className={`ml-1 flex h-[20px] items-center justify-center text-[10px] font-medium ${selected
                       ? "bg-[#9aa8b8] text-white"
@@ -504,11 +520,52 @@ export default function UpSetFilter({
                         : "bg-[#d8dde4] text-neutral-700"
                       }`}
                   >
-                    {row.count}
+                    {activeIndexes.length}
                   </span>
                 </button>
               );
             })}
+
+            {/* Filled circles per category column */}
+            <div
+              className="mt-1 grid border-t border-neutral-300 pt-1"
+              style={{
+                gridTemplateColumns: `${publicationTopicOrder.length * CELL
+                  }px ${COUNT_WIDTH}px`,
+              }}
+            >
+              <div
+                className="grid"
+                style={{
+                  gridTemplateColumns: `repeat(${publicationTopicOrder.length}, ${CELL}px)`,
+                }}
+              >
+                {topicData.map(({ topic, slugs }, index) => {
+                  const count = columnCircleCounts[index] ?? 0;
+                  const hovered = hoveredTopic === topic;
+                  const selected = sameSlugs(
+                    selectedSlugs,
+                    slugs
+                  );
+
+                  return (
+                    <span
+                      key={topic}
+                      className={`mx-[1px] flex h-[20px] items-center justify-center text-[10px] font-medium ${selected
+                        ? "bg-[#9aa8b8] text-white"
+                        : hovered
+                          ? "bg-[#cfd6df] text-neutral-800"
+                          : "bg-[#d8dde4] text-neutral-700"
+                        }`}
+                      title={`${topic} — ${count} filled circle${count === 1 ? "" : "s"} across intersections`}
+                    >
+                      {count}
+                    </span>
+                  );
+                })}
+              </div>
+              <div />
+            </div>
           </div>
 
           {/* Clear */}

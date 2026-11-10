@@ -52,7 +52,7 @@ export const publications: Publication[] = [
     detail: {
       abstract: `Visualization literacy assessment tests such as VLAT and Mini-VLAT measure people’s ability to perform isolated, low-level visual analytics tasks, such as estimating statistical quantities. However, it remains unclear whether these assessments also account for the overall understanding viewers intuitively gain about the data without explicit cuing or guidance, often referred to as high-level comprehension. In this work, we examine whether Mini-VLAT scores predict high-level comprehension, characterized as alignment between viewers’ uncued interpretations and designer intent. We conducted a study with 80 participants, in which each participant completed the Mini-VLAT test and interpreted 16 charts selected from a set of 40 real-world visualizations. Our qualitative and quantitative analyses show no significant relationship between participants’ Mini-VLAT scores and high-level comprehension. Our findings suggest while visualization literacy tests like Mini-VLAT capture viewers’ ability to perform directed, low-level tasks, they do not assess high-level comprehension in natural, uncued settings. Future work should develop VLAT that accounts for high-level comprehension beyond estimating prespecified statistical quantities.`,
     },
-    tags: ["Recent", "HLC", "Empirical"],
+    tags: ["Recent", "Comprehension", "Empirical"],
   },
   {
     slug: "title-framing-line-charts",
@@ -97,7 +97,7 @@ export const publications: Publication[] = [
   url={https://arxiv.org/abs/2609.17455}
 }`,
     },
-    tags: ["Recent", "HLC", "Perception"],
+    tags: ["Recent", "Comprehension", "Perception"],
   },
   {
     slug: "guidelines-are-not-rules",
@@ -146,7 +146,7 @@ export const publications: Publication[] = [
   url={https://arxiv.org/abs/2608.27842}
 }`,
     },
-    tags: ["Recent", "HLC", "Design Optimization"],
+    tags: ["Recent", "Comprehension", "Design Optimization"],
   },
   {
     slug: "hlc-llm",
@@ -178,7 +178,7 @@ export const publications: Publication[] = [
       },
       pdf: "https://arxiv.org/abs/2604.08959",
     },
-    tags: ["Recent", "HLC", "Comprehension", "Empirical"],
+    tags: ["Recent", "Comprehension", "Empirical"],
   },
   {
     slug: "human-mllm",
@@ -595,7 +595,7 @@ export const publications: Publication[] = [
       { label: "PDF", href: "https://arxiv.org/pdf/2402.15605" },
       { label: "Data", href: "https://osf.io/869ev/" },
     ],
-    tags: ["Recent", "HLC", "Perception", "Comprehension"],
+    tags: ["Recent", "Perception", "Comprehension"],
   },
   {
     slug: "categorical-color-perception",
