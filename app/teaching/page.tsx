@@ -18,9 +18,13 @@ const Teaching = () => {
                 <p className="text-sm text-gray-600">
                   {course.institution} | {course.semester}
                 </p>
-                <p className="mt-2 text-gray-700 leading-relaxed">
-                  {course.description}
-                </p>
+
+                {course.description && (
+                  <p className="mt-2 text-gray-700 leading-relaxed">
+                    {course.description}
+                  </p>
+                )}
+
               </div>
             ))}
           </div>

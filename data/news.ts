@@ -1,115 +1,287 @@
-export type NewsLink = { label: string; href: string };
+
+export type NewsLink = {
+  label: string;
+  href: string;
+};
+
+export type NewsRecord = {
+  date: string;
+  content: string;
+  links?: NewsLink[];
+};
+
+export const newsData: NewsRecord[] = [
+  {
+    date: "11.2026",
+    content:
+      "DIV-Lab member- Aaryani, Ghulam, and Tapendra travelling to Boston for IEEE VIS 2026. See you there !",
+  },
+
+  {
+    date: "10.2026",
+    content:
+      "Abstract accepted for VisXVision workshop Lightning Talk at IEEE VIS 2026.",
+    links: [
+      {
+        label: "VisXVision",
+        href: "https://visxvision.com/vis-2026/",
+      },
+    ],
+  },
+
+  {
+    date: "08.2026",
+    content:
+      "Workshop papers and Poster IEEE VIS 2026: VLAT-HLC paper at EduVIS, Title Framing paper at VisXVision, and Quick-View Takeaways poster.",
+    links: [
+      {
+        label: "EduVIS",
+        href: "https://ieee-eduvis.github.io/",
+      },
+      {
+        label: "VisXVision",
+        href: "https://arxiv.org/abs/2609.17455",
+      },
+      {
+        label: "Quick-View Takeaways",
+        href: "https://arxiv.org/abs/2609.17485",
+      },
+    ],
+  },
+
+  {
+    date: "06.2026",
+    content:
+      "Debra successfully defended her Ph.D. Congratulations to Dr. Debra Hogue!",
+  },
+
+  {
+    date: "05.2026",
+    content:
+      "Abstract accepted at VisXVision satellite event at VSS 2026",
+  },
+
+  {
+    date: "05.2026",
+    content:
+      "Aaryani Chowdary Ambati joins DIV-Lab as a PhD student.",
+  },
+
+  {
+    date: "04.2026",
+    content:
+      "Jasmine Lim received a Summer UReCA Fellowship. A paper accepted at EuroVis 2026.",
+    links: [
+      {
+        label: "Summer UReCA Fellowship",
+        href: "https://www.ou.edu/ureca/opportunities/ureca-summer-fellowship",
+      },
+      {
+        label: "EuroVis 2026",
+        href: "https://arxiv.org/abs/2604.08959",
+      },
+    ],
+  },
+
+  {
+    date: "04.2026",
+    content:
+      "CatPAW received an ACM CHI 2026 Honorable Mention.",
+    links: [
+      {
+        label: "ACM CHI 2026 Honorable Mention",
+        href: "https://arxiv.org/abs/2602.06792",
+      },
+    ],
+  },
+
+  {
+    date: "10.2025",
+    content:
+      "Subitizing paper received an IEEE VIS 2025 Honorable Mention;",
+    links: [
+      {
+        label: "IEEE VIS 2025 Honorable Mention",
+        href: "https://ieeevis.org/year/2025/info/awards/best-paper-awards",
+      },
+    ],
+  },
+
+  {
+    date: "10.2025",
+    content:
+      "Visual Stenography paper accepted at IEEE TVCG 2025.",
+    links: [
+      {
+        label: "Visual Stenography",
+        href: "https://arxiv.org/abs/2510.11927",
+      },
+    ],
+  },
+
+  {
+    date: "09.2025",
+    content:
+      "Distortion-aware Brushing accepted at IEEE TVCG;",
+    links: [
+      {
+        label: "Distortion-aware Brushing",
+        href: "https://arxiv.org/abs/2201.06379",
+      },
+    ],
+  },
+
+  {
+    date: "09.2025",
+    content:
+      "Evaluating Line Chart Strategies accepted at ISVC 2025.",
+    links: [
+      {
+        label: "Evaluating Line Chart Strategies",
+        href: "https://arxiv.org/abs/2510.11912",
+      },
+    ],
+  },
+
+  {
+    date: "07.2025",
+    content:
+      "Subitizing was accepted at IEEE VIS 2025. Annotations survey work accepted at IEEE TVCG 2025.",
+    links: [
+      {
+        label: "Subitizing",
+        href: "https://arxiv.org/abs/2508.17460",
+      },
+      {
+        label: "Annotations survey",
+        href: "https://arxiv.org/pdf/2410.05579",
+      },
+    ],
+  },
+
+  {
+    date: "06.2025",
+    content:
+      'Co-Organized the Dagstuhl Seminar "Navigating the Maze of Guidelines to Unify Visualization Design Recommendations."',
+    links: [
+      {
+        label: "Dagstuhl Seminar",
+        href: "https://www.dagstuhl.de/en/seminars/seminar-calendar/seminar-details/25232",
+      },
+    ],
+  },
+
+  {
+    date: "04.2025",
+    content:
+      "High-Level Visualization Comprehension and Categorical Color Perception papers accepted at ACM CHI and EuroVis.",
+    links: [
+      {
+        label: "High-Level Visualization Comprehension",
+        href: "https://doi.org/10.1145/3613904.3642813",
+      },
+      {
+        label: "Categorical Color Perception",
+        href: "https://arxiv.org/pdf/2404.03787",
+      },
+    ],
+  },
+
+  {
+    date: "09.2024",
+    content:
+      "IEEE VIS 2024- A Panel Discussion proposal accepted. A paper accepted at BELIV workshop",
+    links: [
+      {
+        label: "Panel Discussion",
+        href: "https://vis-panel-enough-evaluation.github.io/",
+      },
+      {
+        label: "BELIV workshop",
+        href: "https://arxiv.org/pdf/2408.16080",
+      },
+    ],
+  },
+
+  {
+    date: "08.2024",
+    content:
+      "Annotation Design Space and Shape It Up papers accepted at IEEE VIS 2024.",
+    links: [
+      {
+        label: "Annotation Design Space",
+        href: "https://arxiv.org/pdf/2306.06043",
+      },
+      {
+        label: "Shape It Up",
+        href: "https://arxiv.org/pdf/2408.16079",
+      },
+    ],
+  },
+
+  {
+    date: "07.2024",
+    content:
+      "Paper was accepted at ACM ASSETS 2024.",
+    links: [
+      {
+        label: "ACM ASSETS 2024",
+        href: "https://www.arxiv.org/pdf/2408.16072",
+      },
+    ],
+  },
+
+  {
+    date: "05.2024",
+    content:
+      "Categorical Color Perception work received the Best Short Paper Award at EuroVis 2024.",
+    links: [
+      {
+        label: "Categorical Color Perception",
+        href: "https://event.sdu.dk/eurovis/awards",
+      },
+    ],
+  },
+];
+
+export default newsData;
+
+// Compatibility exports for Portfolio components.
 export type NewsItem = {
   monthYear: string;
   description: string;
   link?: NewsLink | NewsLink[];
 };
 
-export const newsItems: NewsItem[] = [
-  {
-    monthYear: "May 2026",
-    description:
-      "Tapendra's abstracts were accepted for presentation at the VisxVision workshop and as a conference poster at the Vision Sciences Society Annual Meeting.",
-  },
-  {
-    monthYear: "May 2026",
-    description: "Aaryani Chowdary Ambati, PhD Student, is joining DIV-Lab from Summer 2026.",
-  },
-  {
-    monthYear: "April 2026",
-    description:
-      "Two papers accepted at EuroVis 2026: 'How Do LLMs See Charts? A Comparative Study on High-Level Visualization Comprehension in Humans and LLMs.' and 'Designing Annotations in Visualization: Considerations from Visualization Practitioners and Educators.'",
-  },
-  {
-    monthYear: "April 2026",
-    description:
-      'Got Best Paper Honorable Mention at ACM CHI 2026 for "Redundant is Not Redundant: Automating Efficient Categorical Palette Design Unifying Color & Shape Encodings with CatPAW".',
-  },
-  {
-    monthYear: "October 2025",
-    description:
-      " One paper at IEEE VIS 2025: Subtilizing paper received IEEE VIS 2025 Best Paper Honorable Mention award.  One paper at IEEE 2025 VisComm workshop :",
-    link: {
-      label:
-        "Understanding Bias in Perceiving Dimensionality Reduction Projections.",
-      href: "https://arxiv.org/pdf/2507.20805",
-    },
-  },
+export const newsItems: NewsItem[] = newsData.map((item) => ({
+  monthYear: item.date,
+  description: item.content,
+  ...(item.links ? { link: item.links } : {}),
+}));
 
-  {
-    monthYear: "September 2025",
-    description: "Three papers accepted at IEEE TVCG:",
-    link: [
-      {
-        label: "Distortion-Aware Brushing",
-        href: "https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=11184260",
-      },
-      { label: "Annotation Survey", href: "https://arxiv.org/pdf/2410.05579" },
-      { label: "Visual Stenography", href: "https://arxiv.org/abs/2510.11927" },
-    ],
-  },
-  {
-    monthYear: "August 2025",
-    description: "Braden, Debra, and Shane joined DIV-lab as PhD student.",
-  },
-  {
-    monthYear: "June 2025",
-    description:
-      "Ghulam Co-organized and attended Dagstuhl Seminar  (# 25232) - ",
-    link: {
-      label:
-        "Navigating the Maze of Guidelines to Unify Visualization Design Recommendations",
-      href: "https://www.dagstuhl.de/en/seminars/seminar-calendar/seminar-details/25232",
-    },
-  },
-  {
-    monthYear: "September 2024",
-    description:
-      "We have a panel discussion proposal '(Yet Another) Evaluation Needed? A Panel Discussion on Evaluation Trends in Visualization' accepted at IEEE VIS 2024",
-  },
-  {
-    monthYear: "September 2024",
-    description:
-      "We have one BELIV workshop paper 'Striking the Right Balance: Systematic Assessment of Evaluation Method Distribution Across Contribution Types' accepted at IEEE VIS 2024",
-  },
-  {
-    monthYear: "August 2024",
-    description:
-      "We have two full papers '(1) A Qualitative Analysis of Common Practices in Annotations: A Taxonomy and Design Space' and '(2) Shape It Up: An Empirically Grounded Approach for Designing Shape Palettes' accepted at IEEE VIS 2024",
-  },
-  {
-    monthYear: "July 2024",
-    description:
-      "We have one full paper 'Our Stories, Our Data: Co-designing Visualizations with People with Intellectual and Developmental Disabilities' accepted at ACM ASSETS 2024",
-  },
-  {
-    monthYear: "June 2024",
-    description:
-      "I spent the summer at Seoul National University, South Korea as BK21 Global Visiting Fellow in Summer 2024.",
-  },
-  {
-    monthYear: "May 2024",
-    description:
-      "Our EuroVis short paper 'Revisiting Categorical Color Perception in Scatterplots: Sequential, Diverging, and Categorical Palettes' received Best Short Paper Award at 2024 EG/VGTC Conference on Visualization (EuroVis). Odense, Denmark.",
-  },
-  {
-    monthYear: "April 2024",
-    description:
-      "Two papers accepted. 'Do You See What I See? A Qualitative Study Eliciting High-Level Visualization Comprehension' accepted at ACM CHI 2024. 'Revisiting Categorical Color Perception in Scatterplots: Sequential, Diverging, and Categorical Palettes' at IEEE EuroVis 2024.",
-  },
-  {
-    monthYear: "February 2024",
-    description:
-      "Invited research talk at VIS Seminar at Scientific Computing and Imaging Institute (SCI), University of Utah.",
-  },
-  {
-    monthYear: "December 2023",
-    description:
-      "I will join University of Oklahoma as a tenure track Assistant Professor in the School of Computer Science at Gallogly College of Engineering in 2024.",
-  },
-  {
-    monthYear: "September 2023",
-    description:
-      "Honored to receive Best Paper Honorable Mention Award for CLAMS paper from IEEE VIS 2023!",
-  },
-];
+export function formatNewsDate(monthYear: string): string {
+  if (/^\d{2}\.\d{4}$/.test(monthYear)) {
+    return monthYear;
+  }
+
+  const months: Record<string, string> = {
+    January: "01",
+    February: "02",
+    March: "03",
+    April: "04",
+    May: "05",
+    June: "06",
+    July: "07",
+    August: "08",
+    September: "09",
+    October: "10",
+    November: "11",
+    December: "12",
+  };
+
+  const [month, year] = monthYear.trim().split(/\s+/);
+
+  return months[month] && /^\d{4}$/.test(year ?? "")
+    ? `${months[month]}.${year}`
+    : monthYear;
+}
